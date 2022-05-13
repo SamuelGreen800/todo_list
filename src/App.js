@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import React, {useState} from "react";
+import Todo from './components/Todo';
 
 function App() {
 
@@ -58,27 +59,19 @@ function App() {
       todos.map((todo, i) => {
         const todoClasses = [];
         if (todo.complete){
-          todoClasses.push("text-decoration-line-through");}
+          todoClasses.push("text-decoration-line-through");
+        }
 
-        return (<div key={i} className="mx-auto my-2">
-          <table className='d-flex justify-content-center'>
-                <tr>
-                  <td><input checked={todo.complete} type="checkbox" className='mx-2 justify-content-center' onChange={(e) => {
-                    handleToggle(i);
-                  }}></input></td>
-
-                  <td className={todoClasses.join(" ")}>{todo.text}</td>  
-                  <td><button className='mx-4 btn btn-sm  btn-danger' onClick={(e) => {
-                    destroy(i);}}>Delete</button>
-                  </td>
-              </tr>
-              </table>
-          </div>);
-          
+        return <Todo 
+        key={i} 
+        todo={todo} 
+        handleToggle={handleToggle} 
+        i={i} 
+        destroy={destroy} />
         })}
         </div>
 
-  )};
+  );}
 
 
 
